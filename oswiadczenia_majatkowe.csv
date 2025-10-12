@@ -1,7 +1,4 @@
-mp_id,full_name,club,mandate_status,district_number,nazwa,url
-001,Andrzej Adamczyk,PiS,aktywny,13,2023-11-09,https://orka.sejm.gov.pl/osw10.nsf/0/BCABAA60BA061079C1258A6200565C75/%24File/OSW10P_001.pdf
-001,Andrzej Adamczyk,PiS,aktywny,13,2024-04-30,https://orka.sejm.gov.pl/osw10.nsf/0/C921BFB762E770D8C1258B1600300D89/%24File/OSW101_001.pdf
-001,Andrzej Adamczyk,PiS,aktywny,13,2025-04-30,https://orka.sejm.gov.pl/osw10.nsf/0/F17F8ED3BC67C5F0C1258C7C002871EA/%24File/OSW102_001.pdf
+mp_id,full_name,club,mandate_status,district_number,title,url
 002,Piotr Adamowicz,KO,aktywny,25,2023-11-12,https://orka.sejm.gov.pl/osw10.nsf/0/B4D60B6E26CE6C99C1258A65005C6461/%24File/OSW10P_002.pdf
 002,Piotr Adamowicz,KO,aktywny,25,2024-04-30,https://orka.sejm.gov.pl/osw10.nsf/0/10D8D0B6D588D922C1258B15003F63AC/%24File/OSW101_002.pdf
 002,Piotr Adamowicz,KO,aktywny,25,2025-04-30,https://orka.sejm.gov.pl/osw10.nsf/0/D538A8B310AE6530C1258C830032D58E/%24File/OSW102_002.pdf
@@ -849,9 +846,7 @@ mp_id,full_name,club,mandate_status,district_number,nazwa,url
 292,Norbert Pietrykowski,Polska2050-TD,aktywny,4,2023-11-10,https://orka.sejm.gov.pl/osw10.nsf/0/7EBCB6F5679A1856C1258A630056C500/%24File/OSW10P_292.pdf
 292,Norbert Pietrykowski,Polska2050-TD,aktywny,4,2024-04-30,https://orka.sejm.gov.pl/osw10.nsf/0/C49893E82690538CC1258B110040F87E/%24File/OSW101_292.pdf
 292,Norbert Pietrykowski,Polska2050-TD,aktywny,4,2025-04-10,https://orka.sejm.gov.pl/osw10.nsf/0/E769A303471AA92BC1258C68003DDDC9/%24File/OSW102_292.pdf
-293,Lucjan Marek Pietrzczyk,KO,aktywny,33,2023-10-26,https://orka.sejm.gov.pl/osw10.nsf/0/CD5ABFF3174BC11AC1258A54004F86D8/%24File/OSW10P_293.pdf
-293,Lucjan Marek Pietrzczyk,KO,aktywny,33,2024-04-25,https://orka.sejm.gov.pl/osw10.nsf/0/C846CBED9D91F152C1258B0A0065EE77/%24File/OSW101_293.pdf
-293,Lucjan Marek Pietrzczyk,KO,aktywny,33,2025-04-22,https://orka.sejm.gov.pl/osw10.nsf/0/62E28652CB418480C1258C740051F9C7/%24File/OSW102_293.pdf
+293,Lucjan Marek Pietrzczyk,KO,aktywny,33,,
 294,Dariusz Piontkowski,PiS,aktywny,24,2023-10-25,https://orka.sejm.gov.pl/osw10.nsf/0/A6869BD6D0947382C1258A530061780C/%24File/OSW10P_294.pdf
 294,Dariusz Piontkowski,PiS,aktywny,24,2024-04-25,https://orka.sejm.gov.pl/osw10.nsf/0/DCF4F0A6C37CC468C1258B0A005B1789/%24File/OSW101_294.pdf
 294,Dariusz Piontkowski,PiS,aktywny,24,2025-04-24,https://orka.sejm.gov.pl/osw10.nsf/0/D5AE164D1729F6D2C1258C760046B1F7/%24File/OSW102_294.pdf

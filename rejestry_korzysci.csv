@@ -1,5 +1,4 @@
-mp_id,full_name,club,mandate_status,district_number,data,url
-001,Andrzej Adamczyk,PiS,aktywny,13,,
+mp_id,full_name,club,mandate_status,district_number,entry,url
 002,Piotr Adamowicz,KO,aktywny,25,,
 003,Adam Andruszkiewicz,PiS,wygasl,24,,
 004,Waldemar Andzel,PiS,aktywny,32,2024-01-05,https://orka.sejm.gov.pl/rkor10.nsf/0/A62C64FDC44A7466C1258A9B005050E8/%24File/RK10.004.01.pdf
@@ -355,7 +354,7 @@ mp_id,full_name,club,mandate_status,district_number,data,url
 290,Anna Pieczarka,PiS,aktywny,15,,
 291,Katarzyna Maria Piekarska,KO,aktywny,19,,
 292,Norbert Pietrykowski,Polska2050-TD,aktywny,4,2024-01-09,https://orka.sejm.gov.pl/rkor10.nsf/0/31F6136B1FC3FB12C1258A9F0040FEA9/%24File/RK10.292.01.pdf
-293,Lucjan Marek Pietrzczyk,KO,aktywny,33,2024-01-09,https://orka.sejm.gov.pl/rkor10.nsf/0/D6B51DFC9631F52CC1258A9F0040FEB5/%24File/RK10.293.01.pdf
+293,Lucjan Marek Pietrzczyk,KO,aktywny,33,,
 294,Dariusz Piontkowski,PiS,aktywny,24,2024-01-09,https://orka.sejm.gov.pl/rkor10.nsf/0/BCF47828C35F98E6C1258A9F0040FEBF/%24File/RK10.294.01.pdf
 295,Kazimierz Plocke,KO,aktywny,26,2024-01-09,https://orka.sejm.gov.pl/rkor10.nsf/0/22774B525DFC05FAC1258A9F0040FECB/%24File/RK10.295.01.pdf
 296,Grzegorz Płaczek,Konfederacja,aktywny,31,2024-01-09,https://orka.sejm.gov.pl/rkor10.nsf/0/DD46ECCBB9C4EE11C1258A9F0040FED6/%24File/RK10.296.01.pdf

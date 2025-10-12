@@ -1,5 +1,4 @@
-mp_id,full_name,club,mandate_status,district_number,collaborator_name,rodzaj,data,url
-001,Andrzej Adamczyk,PiS,aktywny,13,Henryk Woszczyna,Pracownik,2024-04-09,https://orka.sejm.gov.pl/WspP10.nsf/0/4D20C366F0459C1EC1258AFA00328FBE/%24File/WSP10_001.001.pdf
+mp_id,full_name,club,mandate_status,district_number,collaborator_name,collaborator_type,note,url
 002,Piotr Adamowicz,KO,aktywny,25,Karolina Mizik,Pracownik,2024-08-06,https://orka.sejm.gov.pl/WspP10.nsf/0/0A9C63EEED8B06F4C1258B710031BAD0/%24File/WSP10_002.001.pdf
 003,Adam Andruszkiewicz,PiS,wygasl,24,,,,
 004,Waldemar Andzel,PiS,aktywny,32,Paula Zawadzka,Pracownik,2024-01-18,https://orka.sejm.gov.pl/WspP10.nsf/0/BA275C4441A94812C1258AA80031434D/%24File/WSP10_004.001.pdf
@@ -1320,12 +1319,7 @@ mp_id,full_name,club,mandate_status,district_number,collaborator_name,rodzaj,dat
 292,Norbert Pietrykowski,Polska2050-TD,aktywny,4,Marcin Krych,Asystent społeczny,2025-03-07,https://orka.sejm.gov.pl/WspP10.nsf/0/5CE0FA858B252E05C1258C46003E70DD/%24File/WSP10_292.018.pdf
 292,Norbert Pietrykowski,Polska2050-TD,aktywny,4,Mateusz Maciejewski,Asystent społeczny,2025-03-07,https://orka.sejm.gov.pl/WspP10.nsf/0/17FFF2115C2C8016C1258C46003E459D/%24File/WSP10_292.016.pdf
 292,Norbert Pietrykowski,Polska2050-TD,aktywny,4,Bartosz Jakub Mysliwiec,Asystent społeczny,2024-04-17,https://orka.sejm.gov.pl/WspP10.nsf/0/C481157E2EDCB194C1258B02003293D7/%24File/WSP10_292.015.pdf
-293,Lucjan Marek Pietrzczyk,KO,aktywny,33,Mikołaj Matynia,Pracownik,2024-04-23,https://orka.sejm.gov.pl/WspP10.nsf/0/B951E961036562D0C1258B080049A624/%24File/WSP10_293.003.pdf
-293,Lucjan Marek Pietrzczyk,KO,aktywny,33,Łukasz Mucha,Pracownik,2023-12-07,https://orka.sejm.gov.pl/WspP10.nsf/0/3E013D4B56A82EB8C1258A7E00355B05/%24File/WSP10_293.001.pdf
-293,Lucjan Marek Pietrzczyk,KO,aktywny,33,Łukasz Mucha,Wycofanie,2024-04-23,https://orka.sejm.gov.pl/WspP10.nsf/0/D0A8CB77726B8C42C1258B08004991CA/%24File/WSP10_293.002.pdf
-293,Lucjan Marek Pietrzczyk,KO,aktywny,33,Jan Nalewczyński,Asystent społeczny,2025-10-08,https://orka.sejm.gov.pl/WspP10.nsf/0/2DC9C44ADD53FBE8C1258D1D00342741/%24File/WSP10_293.006.pdf
-293,Lucjan Marek Pietrzczyk,KO,aktywny,33,Maciej Pietrzczyk,Asystent społeczny,2024-09-25,https://orka.sejm.gov.pl/WspP10.nsf/0/2220A9BC445C8815C1258BA30046173C/%24File/WSP10_293.004.pdf
-293,Lucjan Marek Pietrzczyk,KO,aktywny,33,Grzegorz Tokarz,Asystent społeczny,2025-07-10,https://orka.sejm.gov.pl/WspP10.nsf/0/3DF15B43D2912E56C1258CC30031779C/%24File/WSP10_293.005.pdf
+293,Lucjan Marek Pietrzczyk,KO,aktywny,33,,,,
 294,Dariusz Piontkowski,PiS,aktywny,24,Henryk Łupiński,Pracownik,2024-03-08,https://orka.sejm.gov.pl/WspP10.nsf/0/211D660CE8595979C1258ADA0035A41C/%24File/WSP10_294.002.pdf
 294,Dariusz Piontkowski,PiS,aktywny,24,Emilia Madras,Pracownik,2024-03-08,https://orka.sejm.gov.pl/WspP10.nsf/0/DAB1886DB54453B2C1258ADA003594B4/%24File/WSP10_294.001.pdf
 295,Kazimierz Plocke,KO,aktywny,26,Bohdan Sokołek,Pracownik,2023-11-21,https://orka.sejm.gov.pl/WspP10.nsf/0/32A7DC12ECD1E5BBC1258A6E0033E8B7/%24File/WSP10_295.002.pdf
