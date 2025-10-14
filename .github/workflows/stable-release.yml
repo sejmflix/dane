@@ -1,0 +1,38 @@
+name: Stable Dataset Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      term:
+        description: "Numer kadencji Sejmu (domyślnie 10)."
+        required: false
+        type: string
+      confirm:
+        description: "Ustaw na true, aby potwierdzić stabilne wydanie."
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate confirmation
+        run: |
+          if [ "${{ inputs.confirm }}" != "true" ]; then
+            echo "Aby uruchomić stabilny release ustaw pole 'confirm' na true." >&2
+            exit 1
+          fi
+
+  release:
+    needs: guard
+    uses: ./.github/workflows/dataset-release.yml
+    with:
+      channel: stable
+      tag_prefix: stable-
+      prerelease: false
+      release_title_prefix: "Aktualizacja danych"
+      term: ${{ inputs.term }}
+    secrets:
+      DANE_REPO_TOKEN: ${{ secrets.DANE_REPO_TOKEN }}
+

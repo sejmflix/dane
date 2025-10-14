@@ -1,0 +1,24 @@
+name: Beta Dataset Release
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+    inputs:
+      term:
+        description: "Numer kadencji Sejmu (domyślnie 10)."
+        required: false
+        type: string
+
+jobs:
+  release:
+    uses: ./.github/workflows/dataset-release.yml
+    with:
+      channel: beta
+      tag_prefix: beta-
+      prerelease: true
+      release_title_prefix: "Dane testowe"
+      term: ${{ inputs.term }}
+    secrets:
+      DANE_REPO_TOKEN: ${{ secrets.DANE_REPO_TOKEN }}
+

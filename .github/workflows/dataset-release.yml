@@ -1,0 +1,190 @@
+name: Dataset Release (Reusable)
+
+on:
+  workflow_call:
+    inputs:
+      channel:
+        description: Kanał wydania (np. beta, stable) wykorzystywany do nazewnictwa i równoległości.
+        required: true
+        type: string
+      tag_prefix:
+        description: Prefiks dodawany przed znacznikiem (np. beta- lub stable-).
+        required: true
+        type: string
+      prerelease:
+        description: Czy oznaczyć release jako prerelease?
+        required: true
+        type: boolean
+      release_title_prefix:
+        description: Prefiks w tytule release'u (np. 'Beta dane').
+        required: true
+        type: string
+      term:
+        description: Numer kadencji Sejmu przekazywany do skryptu (domyślnie 10).
+        required: false
+        type: string
+    secrets:
+      DANE_REPO_TOKEN:
+        required: true
+
+jobs:
+  build-and-release:
+    name: Build dataset and publish ${{ inputs.channel }} release
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    concurrency:
+      group: dataset-${{ inputs.channel }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      packages: read
+
+    steps:
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout scraper repository
+        uses: actions/checkout@v4
+        with:
+          repository: sejmflix/SejmScraper
+          path: sejm-scraper
+          token: ${{ secrets.DANE_REPO_TOKEN }}
+          fetch-depth: 0
+
+      - name: Resolve runtime configuration
+        id: config
+        shell: bash
+        run: |
+          set -euo pipefail
+          term="${{ inputs.term }}"
+          if [ -z "$term" ] || [ "$term" = "null" ]; then
+            term="10"
+          fi
+          tag_prefix="${{ inputs.tag_prefix }}"
+          run_ts=$(date -u '+%Y%m%d-%H%M%S')
+          tag="${tag_prefix}${run_ts}"
+          asset="dataset-${tag}.tar.gz"
+          title_prefix="${{ inputs.release_title_prefix }}"
+          title="${title_prefix} $(date -u '+%Y-%m-%d %H:%M UTC')"
+          echo "term=$term" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "asset=$asset" >> "$GITHUB_OUTPUT"
+          echo "title=$title" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: sejm-scraper/requirements.txt
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('sejm-scraper/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install Python dependencies
+        env:
+          PIP_CACHE_DIR: ~/.cache/pip
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r sejm-scraper/requirements.txt
+
+      - name: Install Playwright browsers
+        run: |
+          python -m playwright install --with-deps chromium
+
+      - name: Prepare working directories
+        run: |
+          rm -rf data
+          mkdir -p data/new previous dist
+
+      - name: Download previous dataset for channel
+        id: previous
+        env:
+          GH_TOKEN: ${{ secrets.DANE_REPO_TOKEN }}
+          PRERELEASE_FLAG: ${{ inputs.prerelease }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$PRERELEASE_FLAG" = "true" ]; then
+            release_info=$(gh api "repos/${GITHUB_REPOSITORY}/releases" --paginate --jq 'map(select(.draft==false and .prerelease==true))[0]')
+          else
+            release_info=$(gh api "repos/${GITHUB_REPOSITORY}/releases" --paginate --jq 'map(select(.draft==false and .prerelease==false))[0]')
+          fi
+          if [ -z "$release_info" ] || [ "$release_info" = "null" ]; then
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          tag=$(echo "$release_info" | jq -r '.tag_name')
+          if ! gh release download "$tag" --pattern "dataset-*.tar.gz" --dir previous; then
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          archive=$(ls previous/dataset-*.tar.gz | head -n1 || true)
+          if [ -z "$archive" ]; then
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          tar -xzf "$archive" -C previous
+          rm -f "$archive"
+          echo "found=true" >> "$GITHUB_OUTPUT"
+
+      - name: Run scraper
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: 0
+        run: |
+          python -u sejm-scraper/fetch_biura_poselskie.py \
+            --term "${{ steps.config.outputs.term }}" \
+            --output-dir data/new \
+            --headless
+
+      - name: Generate change summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.previous.outputs.found }}" = "true" ] && compgen -G "previous/*.csv" > /dev/null; then
+            python sejm-scraper/scripts/summarize_changes.py \
+              --old previous \
+              --new data/new \
+              --output summary.md
+          else
+            cat <<'EOF' > summary.md
+Pierwsze wydanie danych w tym kanale - brak wczesniejszego zestawu do porownania.
+EOF
+          fi
+          echo
+          echo "===== Podsumowanie zmian ====="
+          cat summary.md
+          echo "=============================="
+
+      - name: Package dataseta
+        run: |
+          tar -czf "dist/${{ steps.config.outputs.asset }}" -C data/new .
+
+      - name: Upload artifacts (diagnostics)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.channel }}-dataset-${{ steps.config.outputs.tag }}
+          path: |
+            dist/${{ steps.config.outputs.asset }}
+            summary.md
+          retention-days: 7
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.config.outputs.title }}
+          tag_name: ${{ steps.config.outputs.tag }}
+          prerelease: ${{ inputs.prerelease }}
+          draft: false
+          body_path: summary.md
+          files: dist/${{ steps.config.outputs.asset }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.DANE_REPO_TOKEN }}
