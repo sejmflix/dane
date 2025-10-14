@@ -2,6 +2,7 @@ name: Beta Dataset Release
 
 permissions:
   contents: write
+  packages: read
 
 on:
   schedule:
