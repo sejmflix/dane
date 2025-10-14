@@ -1,5 +1,8 @@
 name: Beta Dataset Release
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: "0 4 * * *"
@@ -21,4 +24,3 @@ jobs:
       term: ${{ inputs.term }}
     secrets:
       DANE_REPO_TOKEN: ${{ secrets.DANE_REPO_TOKEN }}
-
