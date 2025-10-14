@@ -154,16 +154,14 @@ jobs:
               --new data/new \
               --output summary.md
           else
-            cat <<'EOF' > summary.md
-Pierwsze wydanie danych w tym kanale - brak wczesniejszego zestawu do porownania.
-EOF
+            echo "Pierwsze wydanie danych w tym kanale - brak wczesniejszego zestawu do porownania." > summary.md
           fi
           echo
           echo "===== Podsumowanie zmian ====="
           cat summary.md
           echo "=============================="
 
-      - name: Package dataseta
+      - name: Package dataset
         run: |
           tar -czf "dist/${{ steps.config.outputs.asset }}" -C data/new .
 
