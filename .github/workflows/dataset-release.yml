@@ -130,7 +130,8 @@ jobs:
           python -u sejm-scraper/fetch_biura_poselskie.py \
             --term "${{ steps.config.outputs.term }}" \
             --output-dir data/new \
-            --headless
+            --headless \
+            --no-pause
 
       - name: Generate change summary
         shell: bash
