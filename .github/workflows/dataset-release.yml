@@ -31,7 +31,7 @@ jobs:
   build-and-release:
     name: Build dataset and publish ${{ inputs.channel }} release
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 360
     concurrency:
       group: dataset-${{ inputs.channel }}
       cancel-in-progress: false
