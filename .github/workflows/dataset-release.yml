@@ -42,14 +42,6 @@ jobs:
 
     steps:
 
-      - name: Clean workspace
-        if: always()
-        run: |
-          rm -rf "$RUNNER_WORKSPACE"/* || true
-
-      - name: Ensure workspace exists
-        run: mkdir -p "$GITHUB_WORKSPACE"
-
       - name: Checkout target repository
         uses: actions/checkout@v4
         with:
