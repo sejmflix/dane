@@ -30,7 +30,8 @@ on:
 jobs:
   build-and-release:
     name: Build dataset and publish ${{ inputs.channel }} release
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: [self-hosted, linode]   # ← minimalnie; albo dokładniej: [self-hosted, linode, ubuntu, docker]
     timeout-minutes: 360
     concurrency:
       group: dataset-${{ inputs.channel }}
@@ -40,6 +41,11 @@ jobs:
       packages: read
 
     steps:
+      - name: Clean workspace
+        if: always()
+        run: |
+          rm -rf "$RUNNER_WORKSPACE"/* || true
+
       - name: Checkout target repository
         uses: actions/checkout@v4
         with:
